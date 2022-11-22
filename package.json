@@ -1,0 +1,30 @@
+{
+  "name": "odin-battleship",
+  "version": "1.0.0",
+  "description": "Battleship game built using TDD",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnthonyHeinrichs/odin-battleship.git"
+  },
+  "author": "AnthonyHeinrichs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnthonyHeinrichs/odin-battleship/issues"
+  },
+  "homepage": "https://github.com/AnthonyHeinrichs/odin-battleship#readme",
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.0",
+    "jest": "^29.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

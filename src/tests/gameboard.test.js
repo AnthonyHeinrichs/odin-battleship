@@ -1,34 +1,54 @@
-const Gameboard = require('../gameboard')
+const Gameboard = require("../gameboard");
 
-test('Gameboard factory function returns a board with 100 length', () => {
-  expect(Gameboard().board.length).toEqual(100)
-})
+test("Gameboard factory function returns a board with 100 length", () => {
+  expect(Gameboard().board.length).toEqual(100);
+});
 
-test('If addShip method will update board hasShip object param', () => {
-  const newGameBoard = Gameboard()
-  newGameBoard.addShip(2, 1)
-  expect(newGameBoard.board[2].hasShip).toBe(true) 
-})
+test("If addShip method will update board hasShip object param on x axis", () => {
+  const newGameBoard = Gameboard();
+  newGameBoard.addShip(2, "x", 3);
+  expect(newGameBoard.board[2].hasShip).toBe(true);
+});
 
-test('If a square is attacked for the first time, update has been attacked', () => {
-  const newGameBoard = Gameboard()
-  newGameBoard.receiveAttack(2)
-  expect(newGameBoard.board[1].hasBeenAttacked).toBe(true) 
- })
+test("If addShip method will update board hasShip object param on y axis", () => {
+  const newGameBoard = Gameboard();
+  newGameBoard.addShip(2, "y", 3);
+  expect(newGameBoard.board[21].hasShip).toBe(true);
+});
 
- test('If a square with a ship has been attacked for the first time, return congrats', () => {
-  const newGameBoard = Gameboard()
-  newGameBoard.addShip(2, 1)
-  expect(newGameBoard.receiveAttack(2)).toBe('Congrats you hit a ship!')
- })
+test("addShip method will return message if requested squares is outside board (x axis)", () => {
+  const newGameBoard = Gameboard();
+  expect(newGameBoard.addShip(8, "x", 4)).toBe(
+    "Your ship cannot be placed here"
+  );
+});
 
- test('If a square without a ship has been attacked for the first time, return a miss', () => {
-  const newGameBoard = Gameboard()
-  expect(newGameBoard.receiveAttack(2)).toBe('Sorry you missed')
- })
+test("addShip method will return message if requested squares is outside board (y axis)", () => {
+  const newGameBoard = Gameboard();
+  expect(newGameBoard.addShip(88, "x", 4)).toBe(
+    "Your ship cannot be placed here"
+  );
+});
 
- test('If a square has already been attacked, return a already attacked message', () => {
-  const newGameBoard = Gameboard()
-  expect(newGameBoard.receiveAttack(2))
-  expect(newGameBoard.receiveAttack(2)).toBe('Already attacked this square')
- })
+test("If a square is attacked for the first time, update has been attacked", () => {
+  const newGameBoard = Gameboard();
+  newGameBoard.receiveAttack(2);
+  expect(newGameBoard.board[1].hasBeenAttacked).toBe(true);
+});
+
+test("If a square with a ship has been attacked for the first time, return congrats", () => {
+  const newGameBoard = Gameboard();
+  newGameBoard.addShip(2, "x", 1);
+  expect(newGameBoard.receiveAttack(2)).toBe("Congrats you hit a ship!");
+});
+
+test("If a square without a ship has been attacked for the first time, return a miss", () => {
+  const newGameBoard = Gameboard();
+  expect(newGameBoard.receiveAttack(2)).toBe("Sorry you missed");
+});
+
+test("If a square has already been attacked, return a already attacked message", () => {
+  const newGameBoard = Gameboard();
+  expect(newGameBoard.receiveAttack(2));
+  expect(newGameBoard.receiveAttack(2)).toBe("Already attacked this square");
+});

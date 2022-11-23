@@ -30,6 +30,38 @@ test("addShip method will return message if requested squares is outside board (
   );
 });
 
+test("AddShip method cannot overlap existing ships (x axis)", () => {
+  const newGameBoard = Gameboard();
+  newGameBoard.addShip(2, "x", 4);
+  expect(newGameBoard.addShip(4, "x", 4)).toBe(
+    "Your ship cannot be placed here"
+  );
+});
+
+test("AddShip method cannot overlap existing ships (y axis)", () => {
+  const newGameBoard = Gameboard();
+  newGameBoard.addShip(4, "y", 4);
+  expect(newGameBoard.addShip(14, "y", 4)).toBe(
+    "Your ship cannot be placed here"
+  );
+});
+
+test("AddShip method cannot overlap existing ships on y axis from x axis", () => {
+  const newGameBoard = Gameboard();
+  newGameBoard.addShip(4, "y", 4);
+  expect(newGameBoard.addShip(2, "x", 4)).toBe(
+    "Your ship cannot be placed here"
+  );
+});
+
+test("AddShip method cannot overlap existing ships x axis from y axis", () => {
+  const newGameBoard = Gameboard();
+  newGameBoard.addShip(4, "x", 4);
+  expect(newGameBoard.addShip(6, "y", 4)).toBe(
+    "Your ship cannot be placed here"
+  );
+});
+
 test("If a square is attacked for the first time, update has been attacked", () => {
   const newGameBoard = Gameboard();
   newGameBoard.receiveAttack(2);

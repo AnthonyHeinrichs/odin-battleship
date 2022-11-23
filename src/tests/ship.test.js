@@ -1,4 +1,4 @@
-const Ship = require('../ship')
+const Ship = require('../modules/ship')
 
 test('checkIfSunk function should return true if length is equal to or greater than hits', () => {
   const newShip = Ship(0)

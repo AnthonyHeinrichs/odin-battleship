@@ -1,4 +1,4 @@
-const Gameboard = require("../gameboard");
+const Gameboard = require("../modules/gameboard");
 
 test("Gameboard factory function returns a board with 100 length", () => {
   expect(Gameboard().board.length).toEqual(100);

@@ -1,1 +1,1 @@
-const Gameboard = require('./gameboard')
+const Gameboard = require('./modules/gameboard')

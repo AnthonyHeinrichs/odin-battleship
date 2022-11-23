@@ -43,6 +43,12 @@ const Gameboard = () => {
     if (axis == "x") {
       let firstLocCode = board[startSquare].location.split("")[0];
       let lastLoc = board[startSquare + length - 1];
+      // Check that no ships already exist on the squares
+      for (let i = 0; i < length; i++) {
+        if (board[startSquare + i].hasShip == true) {
+          return false
+        }
+      }
       // If the square of the end of the ship is outside the gameboard, return false
       if (lastLoc == undefined) {
         return false;
@@ -55,6 +61,12 @@ const Gameboard = () => {
     } else {
       let firstLocCode = board[startSquare].location.split("")[1];
       let lastLoc = board[startSquare + 10 * length];
+      // Check that no ships already exist on the requested squares
+      for (let i = 0; i < length; i++) {
+        if (board[startSquare + i * 10].hasShip == true) {
+          return false
+        }
+      }
       // If the square of the end of the ship is outside the gameboard, return false
       if (lastLoc == undefined) {
         return false;

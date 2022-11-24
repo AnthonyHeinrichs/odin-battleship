@@ -10,6 +10,10 @@ body {
   justify-content: center;
 }
 
+.hidden {
+  display: none;
+}
+
 .title {
   font-family: 'Bangers', Arial, Helvetica, sans-serif;
   letter-spacing: 0.8rem;

@@ -27,4 +27,32 @@ startBtnDiv.appendChild(startButton)
 // Remove title content when 'Start Game' is selected
 startButton.addEventListener('click', () => {
   titleScreen.classList.add('hidden')
+  playerGameboardDiv.classList.remove('hidden')
+  computerGameboardDiv.classList.remove('hidden')
 })
+
+const playerGameboard = Gameboard()
+
+const playerGameboardDiv = document.createElement('div')
+playerGameboardDiv.classList.add('playerGameboard')
+playerGameboardDiv.classList.add('hidden')
+mainDiv.appendChild(playerGameboardDiv)
+
+for (let i = 0; i < playerGameboard.board.length; i++) {
+  const square = document.createElement('div')
+  square.id = playerGameboard.board[i].id
+  playerGameboardDiv.appendChild(square)
+}
+
+const computerGameboard = Gameboard()
+
+const computerGameboardDiv = document.createElement('div')
+computerGameboardDiv.classList.add('computerGameboard')
+computerGameboardDiv.classList.add('hidden')
+mainDiv.appendChild(computerGameboardDiv)
+
+for (let i = 0; i < computerGameboard.board.length; i++) {
+  const square = document.createElement('div')
+  square.id = computerGameboard.board[i].id
+  computerGameboardDiv.appendChild(square)
+}

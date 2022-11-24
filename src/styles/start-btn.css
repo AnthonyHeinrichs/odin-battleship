@@ -1,0 +1,51 @@
+#start {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  position: relative;
+  margin-top: 24px;
+  padding: 10px 50px;
+  border-radius: 18px;
+  border: none;
+  cursor: pointer;
+  color: rgb(199, 242, 255);
+  background-color: #2a5086;
+  overflow: hidden;
+}
+
+#start::before {
+  position: absolute;
+  content: '';
+  width: 410px;
+  height: 400px;
+  background-color: #ececec;
+  top: -400px;
+  left: -40px;
+  border-radius: 45%;
+  transition: 2s all ease-in-out;
+  animation: wave 12s infinite linear;
+}
+
+#start::after {
+  position: absolute;
+  content: '';
+  width: 260px;
+  height: 385px;
+  background-color: #ffffff9a;
+  top: -372px;
+  left: -105px;
+  border-radius: 45%;
+  transition: 2s all ease-in-out;
+  animation: wave 12s infinite linear;
+}
+
+@keyframes wave {
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+  }
+  
+}

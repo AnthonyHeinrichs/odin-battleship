@@ -4,27 +4,34 @@ body {
   background: url('./public/battlefield.jpg')
 }
 
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .title {
   font-family: 'Bangers', Arial, Helvetica, sans-serif;
-  letter-spacing: 0.4rem;
+  letter-spacing: 0.8rem;
   color: rgb(9, 0, 31);
   font-size: calc(4vw + 48px);
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 40vh;
+  align-items: end;
+  margin-bottom: 0;
+  height: 30vh;
 }
 
 .linear-wipe {
-  background: linear-gradient(-45deg, #00acac, #002930, #0062a3, #003c44);
+  background: linear-gradient(-45deg, #006868, #002930, #003d66, #003c44);
 	background-size: 300%;
 	text-transform: uppercase;
   background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-	animation: animated_text 10s ease-in-out infinite;
-	-moz-animation: animated_text 10s ease-in-out infinite;
-	-webkit-animation: animated_text 10s ease-in-out infinite;
+	animation: animated_text 20s ease-in-out infinite;
+	-moz-animation: animated_text 20s ease-in-out infinite;
+	-webkit-animation: animated_text 20s ease-in-out infinite;
 }
 
 @keyframes animated_text {
@@ -32,3 +39,5 @@ body {
 	50% { background-position: 100% 50%; }
 	100% { background-position: 0px 50%; }
 }
+
+

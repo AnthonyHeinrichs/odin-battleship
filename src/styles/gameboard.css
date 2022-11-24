@@ -1,0 +1,27 @@
+.hidden {
+  display: none !important;
+}
+
+.gameboards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 92px;
+  gap: 48px;
+}
+
+.playerGameboard, .computerGameboard {
+  display: grid;
+  grid-template-columns: repeat(10, 60px);
+  grid-template-rows: repeat(10, 60px);
+  grid-gap: 0px;
+}
+
+.playerSquare, .computerSquare {
+  border: solid 0.1px;
+  background-color: white;
+}
+
+.playerSquare:hover, .computerSquare:hover {
+  background-color: aquamarine;
+}

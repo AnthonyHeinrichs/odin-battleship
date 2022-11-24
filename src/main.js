@@ -1,6 +1,7 @@
 import './global-styles.css'
 import './styles/start-btn.css'
 import './styles/gameboard.css'
+import runGame from './components/runGame'
 
 const Gameboard = require('./modules/gameboard')
 
@@ -63,3 +64,5 @@ for (let i = 0; i < computerGameboard.board.length; i++) {
   square.id = computerGameboard.board[i].id
   computerGameboardDiv.appendChild(square)
 }
+
+runGame()

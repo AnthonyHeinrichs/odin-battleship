@@ -6,7 +6,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 92px;
+  margin-top: 24px;
   gap: 48px;
 }
 
@@ -24,4 +24,50 @@
 
 .playerSquare:hover, .computerSquare:hover {
   background-color: aquamarine;
+}
+
+.shipDockDiv {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+  gap: 24px;
+}
+
+.shipDock {
+  background: transparent;
+  padding: 12px;
+  height: 180px;
+}
+
+.flex {
+  display: flex;
+  gap: 8px;
+}
+
+.ship {
+  width: max-content;
+  height: max-content;
+  margin-bottom: 6px;
+}
+
+.flexDirectionY {
+  flex-direction: column;
+}
+
+.shipSquare {
+  height: 24px;
+  width: 24px;
+  background-color: gray;
+  border: solid 0.1px white;
+}
+
+.draggable {
+  display: flex;
+  border: solid 0.1px white;
+}
+
+.activeShip {
+  background: rgb(199, 162, 247);
 }

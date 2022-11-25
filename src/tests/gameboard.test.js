@@ -16,17 +16,23 @@ test("If addShip method will update board hasShip object param on y axis", () =>
   expect(newGameBoard.board[21].hasShip).toBe(true);
 });
 
+test("If addShip method will update board hasShip object param on y axis", () => {
+  const newGameBoard = Gameboard();
+  newGameBoard.addShip(79, "y", 3);
+  expect(newGameBoard.board[98].hasShip).toBe(true);
+});
+
 test("addShip method will return message if requested squares is outside board (x axis)", () => {
   const newGameBoard = Gameboard();
   expect(newGameBoard.addShip(8, "x", 4)).toBe(
-    "Your ship cannot be placed here"
+    "Invalid"
   );
 });
 
 test("addShip method will return message if requested squares is outside board (y axis)", () => {
   const newGameBoard = Gameboard();
   expect(newGameBoard.addShip(88, "x", 4)).toBe(
-    "Your ship cannot be placed here"
+    "Invalid"
   );
 });
 
@@ -34,15 +40,15 @@ test("AddShip method cannot overlap existing ships (x axis)", () => {
   const newGameBoard = Gameboard();
   newGameBoard.addShip(2, "x", 4);
   expect(newGameBoard.addShip(4, "x", 4)).toBe(
-    "Your ship cannot be placed here"
+    "Invalid"
   );
 });
 
 test("AddShip method cannot overlap existing ships (y axis)", () => {
   const newGameBoard = Gameboard();
-  newGameBoard.addShip(4, "y", 4);
-  expect(newGameBoard.addShip(14, "y", 4)).toBe(
-    "Your ship cannot be placed here"
+  newGameBoard.addShip(4, "x", 4);
+  expect(newGameBoard.addShip(4, "y", 3)).toBe(
+    "Invalid"
   );
 });
 
@@ -50,7 +56,7 @@ test("AddShip method cannot overlap existing ships on y axis from x axis", () =>
   const newGameBoard = Gameboard();
   newGameBoard.addShip(4, "y", 4);
   expect(newGameBoard.addShip(2, "x", 4)).toBe(
-    "Your ship cannot be placed here"
+    "Invalid"
   );
 });
 
@@ -58,7 +64,7 @@ test("AddShip method cannot overlap existing ships x axis from y axis", () => {
   const newGameBoard = Gameboard();
   newGameBoard.addShip(4, "x", 4);
   expect(newGameBoard.addShip(6, "y", 4)).toBe(
-    "Your ship cannot be placed here"
+    "Invalid"
   );
 });
 

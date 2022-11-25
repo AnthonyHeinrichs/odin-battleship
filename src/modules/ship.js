@@ -1,9 +1,10 @@
-const Ship = (length) => {
+const Ship = (length, name) => {
   let isSunk = false;
   let hits = 0;
 
   return {
     length: length,
+    name: name,
     hits: hits,
     isSunk: isSunk,
     checkIfSunk() {

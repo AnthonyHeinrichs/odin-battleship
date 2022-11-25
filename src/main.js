@@ -2,10 +2,11 @@ import "./global-styles.css";
 import "./styles/start-btn.css";
 import "./styles/gameboard.css";
 import initialPageLoad from "./components/initial-page-load";
+import placeShips from "./components/place-ships";
 const Gameboard = require("./modules/gameboard");
-const Ship = require("./modules/ship");
 
 initialPageLoad();
+
 
 const startButton = document.getElementById("start");
 const titleScreen = document.getElementById("titleScreen");
@@ -27,7 +28,7 @@ const playerGameboard = Gameboard();
 
 const playerGameboardDiv = document.createElement("div");
 playerGameboardDiv.classList.add("playerGameboard");
-playerGameboardDiv.classList.add("hidden");
+// playerGameboardDiv.classList.add("hidden");
 gameboards.appendChild(playerGameboardDiv);
 
 // Creating a div for each square in the gameboard (10 x 10)
@@ -42,7 +43,7 @@ const computerGameboard = Gameboard();
 
 const computerGameboardDiv = document.createElement("div");
 computerGameboardDiv.classList.add("computerGameboard");
-computerGameboardDiv.classList.add("hidden");
+// computerGameboardDiv.classList.add("hidden");
 gameboards.appendChild(computerGameboardDiv);
 // Creating a a div for each square in the gameboard (10 x 10)
 for (let i = 0; i < computerGameboard.board.length; i++) {
@@ -52,13 +53,14 @@ for (let i = 0; i < computerGameboard.board.length; i++) {
   computerGameboardDiv.appendChild(square);
 }
 
-// const runGame = () => {
-//   // Ask user to place ship
-//   const carrier = Ship(5)
-//   console.log(
-//     'please place your', carrier
-//   )
-// }
+const runGame = () => {
+  // Place ships for user 
+  placeShips(playerGameboard, true)
+  // Place ships for computer
+  placeShips(computerGameboard, false)
+}
+
+runGame();
 
 // Event listeners for each square
 

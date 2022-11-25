@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
 body {
+  margin: 0;
   background: url('./public/battlefield.jpg') no-repeat center center fixed;
   background-size: cover;
   -webkit-background-size: cover;

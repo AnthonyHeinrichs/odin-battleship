@@ -38,6 +38,7 @@
 .shipDock {
   background: transparent;
   padding: 12px;
+  height: 180px;
 }
 
 .flex {
@@ -46,8 +47,9 @@
 }
 
 .ship {
-  margin-top: 8px;
-  background: transparent;
+  width: max-content;
+  height: max-content;
+  margin-bottom: 6px;
 }
 
 .flexDirectionY {
@@ -55,11 +57,17 @@
 }
 
 .shipSquare {
-  height: 60px;
-  width: 60px;
+  height: 24px;
+  width: 24px;
   background-color: gray;
+  border: solid 0.1px white;
 }
 
 .draggable {
   display: flex;
+  border: solid 0.1px white;
+}
+
+.activeShip {
+  background: rgb(199, 162, 247);
 }

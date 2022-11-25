@@ -46,7 +46,7 @@ const Gameboard = () => {
       // Check that no ships already exist on the squares
       for (let i = 0; i < length; i++) {
         if (board[startSquare + i].hasShip == true) {
-          return false
+          return false;
         }
       }
       // If the square of the end of the ship is outside the gameboard, return false
@@ -56,7 +56,7 @@ const Gameboard = () => {
       let lastLocCode = lastLoc.location.split("")[0];
       // Return true if location code (letter) for both location is the same
       return firstLocCode == lastLocCode;
-    /* If we are placing a ship along the y axis, make sure it does not 
+      /* If we are placing a ship along the y axis, make sure it does not 
     go outside of the gameboards y-axis, or overlap into a new column*/
     } else {
       let firstLocCode = board[startSquare].location.split("")[1];
@@ -64,7 +64,7 @@ const Gameboard = () => {
       // Check that no ships already exist on the requested squares
       for (let i = 0; i < length; i++) {
         if (board[startSquare + i * 10].hasShip == true) {
-          return false
+          return false;
         }
       }
       // If the square of the end of the ship is outside the gameboard, return false
@@ -90,13 +90,13 @@ const Gameboard = () => {
           for (let i = 0; i < length; i++) {
             this.board[startSquare + i].hasShip = true;
           }
-        // Placing new ship on y-axis
+          // Placing new ship on y-axis
         } else {
           for (let i = 0; i < length; i++) {
             this.board[startSquare + i * 10].hasShip = true;
           }
         }
-      // If the requested ship location is not valid, returning message
+        // If the requested ship location is not valid, returning message
       } else {
         return "Your ship cannot be placed here";
       }
@@ -109,16 +109,16 @@ const Gameboard = () => {
       // Checking that the ship hasn't been attacked already
       if (attackedSquare.hasBeenAttacked) {
         return "Already attacked this square";
-      // If it hasn't been attacked, checking if a ship exists on that square
+        // If it hasn't been attacked, checking if a ship exists on that square
       } else if (attackedSquare.hasShip && !attackedSquare.hasBeenAttacked) {
         attackedSquare.hasBeenAttacked = true;
         return "Congrats you hit a ship!";
-      // If no ship exists on that square, return a miss
+        // If no ship exists on that square, return a miss
       } else {
         attackedSquare.hasBeenAttacked = true;
         return "Sorry you missed";
       }
-    }
+    },
   };
 };
 

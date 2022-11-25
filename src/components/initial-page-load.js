@@ -3,6 +3,7 @@ const initialPageLoad = () => {
 
   const titleScreen = document.createElement("div");
   titleScreen.classList.add("titleScreen");
+  titleScreen.classList.add("hidden")
   titleScreen.id = "titleScreen";
   mainDiv.appendChild(titleScreen);
 

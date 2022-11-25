@@ -58,18 +58,14 @@ const Gameboard = () => {
       return firstLocCode == lastLocCode;
       /* If we are placing a ship along the y axis, make sure it does not 
     go outside of the gameboards y-axis, or overlap into a new column*/
-    } else {
+    } else if (axis == "y") {
       let firstLocCode = board[startSquare].location.split("")[1];
-      let lastLoc = board[startSquare + 10 * length];
-      // Check that no ships already exist on the requested squares
+      let lastLoc = board[startSquare + (length * 10) - 10];
+      // Check that no ships already exist on the requested squares or last loc isn't outside board
       for (let i = 0; i < length; i++) {
-        if (board[startSquare + i * 10].hasShip == true) {
+        if ((lastLoc == undefined) || (board[startSquare + i * 10].hasShip == true)) {
           return false;
         }
-      }
-      // If the square of the end of the ship is outside the gameboard, return false
-      if (lastLoc == undefined) {
-        return false;
       }
       let lastLocCode = lastLoc.location.split("")[1];
       // Return true if location code (number) for both locations is the same
@@ -90,15 +86,17 @@ const Gameboard = () => {
           for (let i = 0; i < length; i++) {
             this.board[startSquare + i].hasShip = true;
           }
+          return('Valid');
           // Placing new ship on y-axis
         } else {
           for (let i = 0; i < length; i++) {
             this.board[startSquare + i * 10].hasShip = true;
           }
+          return('Valid');
         }
         // If the requested ship location is not valid, returning message
       } else {
-        return "Your ship cannot be placed here";
+        return "Invalid";
       }
     },
     receiveAttack(boardId) {

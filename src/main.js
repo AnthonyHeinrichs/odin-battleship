@@ -1,68 +1,79 @@
-import './global-styles.css'
-import './styles/start-btn.css'
-import './styles/gameboard.css'
-import runGame from './components/runGame'
+import "./global-styles.css";
+import "./styles/start-btn.css";
+import "./styles/gameboard.css";
+import initialPageLoad from "./components/initial-page-load";
+const Gameboard = require("./modules/gameboard");
+const Ship = require("./modules/ship");
 
-const Gameboard = require('./modules/gameboard')
+initialPageLoad();
 
-const mainDiv = document.getElementById('mainDiv')
-
-const titleScreen = document.createElement('div')
-titleScreen.classList.add('titleScreen')
-mainDiv.appendChild(titleScreen)
-
-const battleshipTitle = document.createElement('h1')
-battleshipTitle.classList.add('title')
-battleshipTitle.classList.add('linear-wipe')
-battleshipTitle.innerText = 'Battleship'
-titleScreen.appendChild(battleshipTitle)
-
-const startBtnDiv = document.createElement('div')
-startBtnDiv.classList.add('center')
-titleScreen.appendChild(startBtnDiv)
-
-const startButton = document.createElement('button')
-startButton.id = 'start'
-startButton.innerText = 'Start Game'
-startBtnDiv.appendChild(startButton)
+const startButton = document.getElementById("start");
+const titleScreen = document.getElementById("titleScreen");
 
 // Remove title content when 'Start Game' is selected
-startButton.addEventListener('click', () => {
-  titleScreen.classList.add('hidden')
-  playerGameboardDiv.classList.remove('hidden')
-  computerGameboardDiv.classList.remove('hidden')
-})
+startButton.addEventListener("click", () => {
+  titleScreen.classList.add("hidden");
+  playerGameboardDiv.classList.remove("hidden");
+  computerGameboardDiv.classList.remove("hidden");
+  // runGame()
+});
 
-const gameboards = document.createElement('div')
-gameboards.classList.add('gameboards')
-mainDiv.appendChild(gameboards)
+// Load in the gameboards, one for the user & one for the computer
+const gameboards = document.createElement("div");
+gameboards.classList.add("gameboards");
+mainDiv.appendChild(gameboards);
+// Initializing player gameboard
+const playerGameboard = Gameboard();
 
-const playerGameboard = Gameboard()
+const playerGameboardDiv = document.createElement("div");
+playerGameboardDiv.classList.add("playerGameboard");
+playerGameboardDiv.classList.add("hidden");
+gameboards.appendChild(playerGameboardDiv);
 
-const playerGameboardDiv = document.createElement('div')
-playerGameboardDiv.classList.add('playerGameboard')
-playerGameboardDiv.classList.add('hidden')
-gameboards.appendChild(playerGameboardDiv)
-
+// Creating a div for each square in the gameboard (10 x 10)
 for (let i = 0; i < playerGameboard.board.length; i++) {
-  const square = document.createElement('div')
-  square.classList.add('playerSquare')
-  square.id = playerGameboard.board[i].id
-  playerGameboardDiv.appendChild(square)
+  const square = document.createElement("div");
+  square.classList.add("playerSquare");
+  square.id = playerGameboard.board[i].id;
+  playerGameboardDiv.appendChild(square);
 }
+// Initializing computer gameboard
+const computerGameboard = Gameboard();
 
-const computerGameboard = Gameboard()
-
-const computerGameboardDiv = document.createElement('div')
-computerGameboardDiv.classList.add('computerGameboard')
-computerGameboardDiv.classList.add('hidden')
-gameboards.appendChild(computerGameboardDiv)
-
+const computerGameboardDiv = document.createElement("div");
+computerGameboardDiv.classList.add("computerGameboard");
+computerGameboardDiv.classList.add("hidden");
+gameboards.appendChild(computerGameboardDiv);
+// Creating a a div for each square in the gameboard (10 x 10)
 for (let i = 0; i < computerGameboard.board.length; i++) {
-  const square = document.createElement('div')
-  square.classList.add('computerSquare')
-  square.id = computerGameboard.board[i].id
-  computerGameboardDiv.appendChild(square)
+  const square = document.createElement("div");
+  square.classList.add("computerSquare");
+  square.id = computerGameboard.board[i].id;
+  computerGameboardDiv.appendChild(square);
 }
 
-runGame()
+// const runGame = () => {
+//   // Ask user to place ship
+//   const carrier = Ship(5)
+//   console.log(
+//     'please place your', carrier
+//   )
+// }
+
+// Event listeners for each square
+
+// const playerSquares = document.querySelectorAll('.playerSquare')
+
+// playerSquares.forEach(square => {
+//   square.addEventListener('click', event => {
+//     console.log(event.target.id)
+//   })
+// })
+
+// const computerSquares = document.querySelectorAll('.computerSquare')
+
+// computerSquares.forEach(square => {
+//   square.addEventListener('click', event => {
+//     console.log(event.target.id)
+//   })
+// })

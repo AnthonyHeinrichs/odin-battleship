@@ -1,6 +1,6 @@
 const Ship = (length) => {
-  let isSunk = false
-  let hits = 0
+  let isSunk = false;
+  let hits = 0;
 
   return {
     length: length,
@@ -8,13 +8,13 @@ const Ship = (length) => {
     isSunk: isSunk,
     checkIfSunk() {
       if (hits >= length) {
-        this.isSunk = true
+        this.isSunk = true;
       }
     },
     hitShip() {
-      this.hits = this.hits += 1 
-      this.checkIfSunk()
-    }
+      this.hits = this.hits += 1;
+      this.checkIfSunk();
+    },
   };
 };
 

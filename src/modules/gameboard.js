@@ -60,10 +60,13 @@ const Gameboard = () => {
     go outside of the gameboards y-axis, or overlap into a new column*/
     } else if (axis == "y") {
       let firstLocCode = board[startSquare].location.split("")[1];
-      let lastLoc = board[startSquare + (length * 10) - 10];
+      let lastLoc = board[startSquare + length * 10 - 10];
       // Check that no ships already exist on the requested squares or last loc isn't outside board
       for (let i = 0; i < length; i++) {
-        if ((lastLoc == undefined) || (board[startSquare + i * 10].hasShip == true)) {
+        if (
+          lastLoc == undefined ||
+          board[startSquare + i * 10].hasShip == true
+        ) {
           return false;
         }
       }
@@ -86,13 +89,13 @@ const Gameboard = () => {
           for (let i = 0; i < length; i++) {
             this.board[startSquare + i].hasShip = true;
           }
-          return('Valid');
+          return "Valid";
           // Placing new ship on y-axis
         } else {
           for (let i = 0; i < length; i++) {
             this.board[startSquare + i * 10].hasShip = true;
           }
-          return('Valid');
+          return "Valid";
         }
         // If the requested ship location is not valid, returning message
       } else {

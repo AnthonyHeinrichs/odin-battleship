@@ -43,15 +43,15 @@ const Gameboard = () => {
     if (axis == "x") {
       let firstLocCode = board[startSquare].location.split("")[0];
       let lastLoc = board[startSquare + length - 1];
+      // If the square of the end of the ship is outside the gameboard, return false
+      if (lastLoc == undefined) {
+        return false;
+      }
       // Check that no ships already exist on the squares
       for (let i = 0; i < length; i++) {
         if (board[startSquare + i].hasShip == true) {
           return false;
         }
-      }
-      // If the square of the end of the ship is outside the gameboard, return false
-      if (lastLoc == undefined) {
-        return false;
       }
       let lastLocCode = lastLoc.location.split("")[0];
       // Return true if location code (letter) for both location is the same

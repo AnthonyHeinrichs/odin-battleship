@@ -11,15 +11,15 @@ const placeShips = (gameboard, player) => {
 
     const showShipsOnBoard = () => {
       for (let i = 1; i < gameboard.board.length; i++)
-      if (gameboard.board[i].hasShip) {
-        const squares = document.querySelectorAll('.playerSquare')
-        squares.forEach(square => {
-          if (square.id == gameboard.board[i].id) {
-            square.classList.add('activeShip')
-          }
-        })
-      }
-    }
+        if (gameboard.board[i].hasShip) {
+          const squares = document.querySelectorAll(".playerSquare");
+          squares.forEach((square) => {
+            if (square.id == gameboard.board[i].id) {
+              square.classList.add("activeShip");
+            }
+          });
+        }
+    };
 
     // Create ships
     const shipDockDiv = document.createElement("div");
@@ -38,11 +38,11 @@ const placeShips = (gameboard, player) => {
     const ships = [carrier, battleship, cruiser, submarine, destroyer];
 
     const removeShip = () => {
-      ships.pop()
+      ships.pop();
       if (ships.length == 0) {
-        shipDockDiv.classList.add('hidden')
+        shipDockDiv.classList.add("hidden");
       }
-    }
+    };
 
     ships.forEach((ship) => {
       const newShip = document.createElement("div");
@@ -90,7 +90,7 @@ const placeShips = (gameboard, player) => {
     draggableItems.forEach((draggable) => {
       draggable.addEventListener("dragstart", (event) => {
         draggable.classList.add("dragging");
-        currentShip = event.target.id
+        currentShip = event.target.id;
       });
       // On drag end, add the ship to the gameboard
       draggable.addEventListener("dragend", (event) => {
@@ -98,8 +98,8 @@ const placeShips = (gameboard, player) => {
           if (gameboard.addShip(squareId, axis, shipLength) == "Valid") {
             event.target.parentElement.remove();
             gameboard.addShip(squareId, axis, shipLength);
-            removeShip()
-            showShipsOnBoard()
+            removeShip();
+            showShipsOnBoard();
           } else {
             console.log("Invalid placement for ship");
           }
@@ -108,9 +108,9 @@ const placeShips = (gameboard, player) => {
     });
 
     const playBoard = document.querySelector(".playerGameboard");
-    playBoard.addEventListener("dragleave", event => {
+    playBoard.addEventListener("dragleave", (event) => {
       if (event.clientX == 0 || event.clientY == 0) {
-        return
+        return;
       } else {
         shipLength = 0;
         squareId = 0;
@@ -126,22 +126,29 @@ const placeShips = (gameboard, player) => {
         squareId = parseInt(event.target.id);
       });
     });
-
-    // const addShipToBoard = (ship) => {
-    //   const playerSquares = document.querySelectorAll('.playerSquare')
-    //   playerSquares.forEach(square => {
-    //     square.addEventListener('click', event => {
-    //       const squareId = parseInt(event.target.id)
-    //       if (gameboard.addShip(squareId, axis, ship.length) == 'Valid') {
-    //         gameboard.addShip(squareId, axis, ship.length)
-    //         console.log(`Your ${ship.name} has been placed`)
-    //       } else {
-    //         console.log(`Your ${ship.name} can't go there!`)
-    //       }
-    //     })
-    //   })
-    // }
   } else {
+    const carrier = Ship(5, "carrier");
+    const battleship = Ship(4, "battleship");
+    const cruiser = Ship(3, "cruiser");
+    const submarine = Ship(3, "submarine");
+    const destroyer = Ship(2, "destroyer");
+    let ships = [carrier, battleship, cruiser, submarine, destroyer];
+
+    while (ships.length > 0) {
+      ships.forEach((ship) => {
+        let squareId = parseInt(Math.random() * 99 + 1);
+        let axis = squareId > 50 ? "x" : "y";
+        let valid = false;
+
+        if (gameboard.addShip(squareId, axis, ship.length) == "Invalid") {
+          return;
+        } else {
+          gameboard.addShip(squareId, axis, ship.length);
+          ships = ships.filter((a) => a !== ship);
+          valid = true;
+        }
+      });
+    }
   }
 };
 

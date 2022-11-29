@@ -7,15 +7,20 @@ const Ship = (length, name) => {
     name: name,
     hits: hits,
     isSunk: isSunk,
+    onBoard: false,
     checkIfSunk() {
       if (hits >= length) {
         this.isSunk = true;
       }
     },
     hitShip() {
-      this.hits = this.hits += 1;
+      this.hits++;
+      hits++;
       this.checkIfSunk();
     },
+    addedToBoard() {
+      this.onBoard = true;
+    }
   };
 };
 

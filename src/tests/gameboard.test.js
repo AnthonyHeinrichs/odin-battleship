@@ -1,4 +1,5 @@
 const Gameboard = require("../modules/gameboard");
+const Ship = require("../modules/ship")
 
 test("Gameboard factory function returns a board with 100 length", () => {
   expect(Gameboard().board.length).toEqual(100);
@@ -76,8 +77,9 @@ test("If a square is attacked for the first time, update has been attacked", () 
 
 test("If a square with a ship has been attacked for the first time, return congrats", () => {
   const newGameBoard = Gameboard();
-  newGameBoard.addShip(2, "x", 1);
-  expect(newGameBoard.receiveAttack(2)).toBe("Congrats you hit a ship!");
+  const newShip = Ship()
+  newGameBoard.addShip(2, "x", 1, newShip);
+  expect(newGameBoard.receiveAttack(2)).toBe("Ship hit");
 });
 
 test("If a square without a ship has been attacked for the first time, return a miss", () => {

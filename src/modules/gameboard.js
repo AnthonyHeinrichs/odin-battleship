@@ -1,5 +1,3 @@
-const Ship = require("./ship");
-
 const Gameboard = () => {
   const board = [];
 
@@ -8,6 +6,7 @@ const Gameboard = () => {
     return {
       id: id,
       location: location,
+      ship: Object,
       hasShip: false,
       hasBeenAttacked: false,
     };
@@ -79,7 +78,7 @@ const Gameboard = () => {
   return {
     board: board,
     // Adding method to allow a ship to be added to the board
-    addShip(boardId, axis, length) {
+    addShip(boardId, axis, length, ship) {
       // Getting the index of the square with ID that was passed
       let startSquare = this.board.findIndex((x) => x.id === boardId);
       // Checking if it is a valid placement for the new ship
@@ -88,12 +87,14 @@ const Gameboard = () => {
         if (axis == "x") {
           for (let i = 0; i < length; i++) {
             this.board[startSquare + i].hasShip = true;
+            this.board[startSquare + i].ship = ship;
           }
           return "Valid";
           // Placing new ship on y-axis
         } else {
           for (let i = 0; i < length; i++) {
             this.board[startSquare + i * 10].hasShip = true;
+            this.board[startSquare + i * 10].ship = ship;
           }
           return "Valid";
         }
@@ -113,7 +114,8 @@ const Gameboard = () => {
         // If it hasn't been attacked, checking if a ship exists on that square
       } else if (attackedSquare.hasShip && !attackedSquare.hasBeenAttacked) {
         attackedSquare.hasBeenAttacked = true;
-        return "Congrats you hit a ship!";
+        attackedSquare.ship.hitShip()
+        return 'Ship hit'
         // If no ship exists on that square, return a miss
       } else {
         attackedSquare.hasBeenAttacked = true;

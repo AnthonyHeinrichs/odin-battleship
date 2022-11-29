@@ -10,5 +10,8 @@ test('checkIfSunk function should return true if length is equal to or greater t
 test('hitShip should increase the number of ship hits', () => {
   const newShip = Ship(5)
   newShip.hitShip()
-  expect(newShip.hits).toEqual(1)
+  newShip.hitShip()
+  newShip.hitShip()
+  newShip.hitShip()
+  expect(newShip.hits).toEqual(4)
 })

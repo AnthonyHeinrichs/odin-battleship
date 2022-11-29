@@ -1,4 +1,4 @@
-const initialPageLoad = (playerGameboard, computerGameboard) => {
+const initialPageLoad = (playerOneGameboard, playerTwoGameboard) => {
   const mainDiv = document.getElementById("mainDiv");
 
   const titleScreen = document.createElement("div");
@@ -26,31 +26,31 @@ const initialPageLoad = (playerGameboard, computerGameboard) => {
   gameboards.classList.add("gameboards");
   mainDiv.appendChild(gameboards);
 
-  const playerGameboardDiv = document.createElement("div");
-  playerGameboardDiv.classList.add("playerGameboard");
-  playerGameboardDiv.id = "playerGameboard";
-  playerGameboardDiv.classList.add("hidden");
-  gameboards.appendChild(playerGameboardDiv);
+  const playerOneGameboardDiv = document.createElement("div");
+  playerOneGameboardDiv.classList.add("playerOneGameboard");
+  playerOneGameboardDiv.id = "playerOneGameboard";
+  playerOneGameboardDiv.classList.add("hidden");
+  gameboards.appendChild(playerOneGameboardDiv);
 
   // Creating a div for each square in the gameboard (10 x 10)
-  for (let i = 0; i < playerGameboard.board.length; i++) {
+  for (let i = 0; i < playerOneGameboard.board.length; i++) {
     const square = document.createElement("div");
     square.classList.add("playerSquare");
-    square.id = playerGameboard.board[i].id;
-    playerGameboardDiv.appendChild(square);
+    square.id = playerOneGameboard.board[i].id;
+    playerOneGameboardDiv.appendChild(square);
   }
 
-  const computerGameboardDiv = document.createElement("div");
-  computerGameboardDiv.classList.add("computerGameboard");
-  computerGameboardDiv.id = "computerGameboard";
-  computerGameboardDiv.classList.add("hidden");
-  gameboards.appendChild(computerGameboardDiv);
+  const playerTwoGameboardDiv = document.createElement("div");
+  playerTwoGameboardDiv.classList.add("playerTwoGameboard");
+  playerTwoGameboardDiv.id = "playerTwoGameboard";
+  playerTwoGameboardDiv.classList.add("hidden");
+  gameboards.appendChild(playerTwoGameboardDiv);
   // Creating a a div for each square in the gameboard (10 x 10)
-  for (let i = 0; i < computerGameboard.board.length; i++) {
+  for (let i = 0; i < playerTwoGameboard.board.length; i++) {
     const square = document.createElement("div");
     square.classList.add("computerSquare");
-    square.id = computerGameboard.board[i].id;
-    computerGameboardDiv.appendChild(square);
+    square.id = playerTwoGameboard.board[i].id;
+    playerTwoGameboardDiv.appendChild(square);
   }
 };
 

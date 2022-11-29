@@ -6,9 +6,9 @@ import placeShips from "./components/place-ships";
 import showAttacks from "./components/show-attacks"
 const Gameboard = require("./modules/gameboard");
 const Player = require("./modules/player")
-const Ship = require("./modules/ship")
 
 let winner = null;
+let counter = 1
 
 // Initializing player gameboard
 const playerOneGameboard = Gameboard();
@@ -42,32 +42,32 @@ const addShipsToBoard = () => {
   // Place ships for computer
   placeShips(playerTwoGameboard, false);
   // Place ships for user with callback to know when all ships are placed
-  placeShips(playerOneGameboard, true, startGame);
+  placeShips(playerOneGameboard, true, runGame);
 };
 
-// Just temporarily checking game ready callback
-
-/* UPDATED THE LOGIC, CALL HIT SHIP METHOD ON THE SHIP ATTACHED TO GAMEBOARD SQUARE
-AND CHECK THAT ALL SHIPS HAVE BEEN SUNK TO DETERMINE IF GAME IS OVER OR NOT 
-ALSO USE THE PLAYER FUNCTION TO DETERMINE WHOS TURN IT IS*/
-
-function startGame() {
+function runGame() {
   const computerSquares = document.querySelectorAll(".computerSquare");
-
-  if (playerTwo.isTurn) {
-    showAttacks(playerTwo, playerOneGameboard);
-  } else if (playerOne.isTurn) {
-    computerSquares.forEach((square) => {
-      square.addEventListener("click", (event) => {
-        if (playerTwoGameboard.receiveAttack(parseInt(event.target.id)) == 'Ship hit') {
-          checkWinner()
-        }
-        showAttacks(playerOne, playerTwoGameboard);
-      });
+  computerSquares.forEach((square) => {
+    square.addEventListener("click", (event) => {
+      if (playerTwoGameboard.receiveAttack(parseInt(event.target.id)) == 'Ship hit') {
+        checkWinner()
+      }
+      playerOne.isTurn = false
+      playerTwo.isTurn = true
+      aiAttack()
+      showAttacks(playerOne, playerTwoGameboard);
     });
-  } else {
-    return;
+  });
+}
+
+function aiAttack() {
+  if (playerOneGameboard.receiveAttack(counter) == 'Ship hit') {
+    checkWinner()
   }
+  counter++
+  showAttacks(playerTwo, playerOneGameboard)
+  playerOne.isTurn = true
+  playerTwo.isTurn = false
 }
 
 const checkWinner = () => {
@@ -80,7 +80,6 @@ const checkWinner = () => {
         ships.push(playerTwoGameboard.board[i].ship.isSunk)
       }
     }
-    console.log(ships)
 
     if (ships.every(ship => ship == true)) {
       winner = 'Player'
@@ -94,9 +93,10 @@ const checkWinner = () => {
         ships.push(playerOneGameboard.board[i].ship.isSunk)
       }
     }
-
+    console.log(ships)
     if (ships.every(ship => ship == true)) {
       winner = 'Computer'
+      console.log('winner is', winner)
     }
   }
 };

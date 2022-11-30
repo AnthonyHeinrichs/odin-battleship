@@ -1,0 +1,32 @@
+.endScreen {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-200%, -50%);
+  opacity: 0;
+  height: 600px;
+  width: 100vw;
+  background: white;
+  z-index: 9999;
+}
+
+.showEnd {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: all 500ms;
+}
+
+.endChildDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.winnerMessage {
+  font-size: 48px;
+  color: rgb(9, 0, 31);
+}

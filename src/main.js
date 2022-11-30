@@ -4,14 +4,15 @@ import "./styles/gameboard.css";
 import initialPageLoad from "./components/initial-page-load";
 import placeShips from "./components/place-ships";
 import showAttacks from "./components/show-attacks";
+import gameEnd from "./components/game-end";
 const Gameboard = require("./modules/gameboard");
 const Player = require("./modules/player");
 
 let winner = null;
-let playerOneGameboard = null
-let playerTwoGameboard = null
-let playerOne = null
-let playerTwo = null
+let playerOneGameboard = null;
+let playerTwoGameboard = null;
+let playerOne = null;
+let playerTwo = null;
 
 const setupGame = () => {
   // Initializing player gameboard
@@ -24,9 +25,9 @@ const setupGame = () => {
   playerOne.isTurn = true;
   // Initialize player two
   playerTwo = Player(2, true);
-}
+};
 
-setupGame()
+setupGame();
 
 const startGame = () => {
   // Place ships for computer
@@ -37,13 +38,15 @@ const startGame = () => {
   function runGame() {
     const computerSquares = document.querySelectorAll(".computerSquare");
     computerSquares.forEach((square) => {
-      square.addEventListener("click", (event) => {
+      square.addEventListener("click", function _listener(event) {
         if (
           playerTwoGameboard.receiveAttack(parseInt(event.target.id)) ==
           "Already attacked this square"
         ) {
           return;
         } else {
+          showAttacks(playerOne, playerTwoGameboard);
+          checkWinner();
           playerOne.isTurn = false;
           playerTwo.isTurn = true;
           playerTwo.aiAttack(
@@ -53,18 +56,14 @@ const startGame = () => {
             showAttacks,
             checkWinner
           );
-          checkWinner();
-          showAttacks(playerOne, playerTwoGameboard);
         }
       });
     });
   }
-  
+
   const checkWinner = () => {
     let ships = [];
-    const oneSquares = document.querySelectorAll(".computerSquare");
-    const twoSquares = document.querySelectorAll(".playerSquare");
-  
+
     if (playerOne.isTurn) {
       console.log("checking");
       for (let i = 0; i < playerTwoGameboard.board.length; i++) {
@@ -72,50 +71,26 @@ const startGame = () => {
           ships.push(playerTwoGameboard.board[i].ship.isSunk);
         }
       }
-  
+
       if (ships.every((ship) => ship == true)) {
-        const titleScreen = document.getElementById("titleScreen");
         winner = "Player";
-        console.log("winner is", winner);
-        setupGame()
-        titleScreen.classList.remove("hidden");
-        oneSquares.forEach(square => {
-          square.classList.remove('attackedShip')
-          square.classList.remove('missedShip')
-        })
-        twoSquares.forEach(square => {
-          square.classList.remove('attackedShip')
-          square.classList.remove('missedShip')
-          square.classList.remove('activeShip')
-        })
+        gameEnd(winner)
+        setupGame();
       }
-    }
-  
-    if (playerTwo.isTurn) {
+    } else if (playerTwo.isTurn) {
       for (let i = 0; i < playerOneGameboard.board.length; i++) {
         if (playerOneGameboard.board[i].ship.isSunk !== undefined) {
           ships.push(playerOneGameboard.board[i].ship.isSunk);
         }
       }
       if (ships.every((ship) => ship == true)) {
-        const titleScreen = document.getElementById("titleScreen");
         winner = "Computer";
-        console.log("winner is", winner);
-        setupGame()
-        titleScreen.classList.remove("hidden");
-        oneSquares.forEach(square => {
-          square.classList.remove('attackedShip')
-          square.classList.remove('missedShip')
-        })
-        twoSquares.forEach(square => {
-          square.classList.remove('attackedShip')
-          square.classList.remove('missedShip')
-          square.classList.remove('activeShip')
-        })
+        gameEnd(winner)
+        setupGame();
       }
     }
   };
-}
+};
 
 // Executing initial page load to load all DOM elements
 initialPageLoad(playerOneGameboard, playerTwoGameboard);
@@ -132,13 +107,3 @@ startButton.addEventListener("click", () => {
   playerTwoGameboardDiv.classList.remove("hidden");
   startGame();
 });
-
-// TESTING AREA:
-// const showWinnerScreen = () => {
-//   const gameboardOne = document.getElementById("playerOneGameboard");
-//   const gameboardTwo = document.getElementById("playerTwoGameboard");
-
-//   gameboardOne.classList.add("hidden");
-//   gameboardTwo.classList.add("hidden");
-
-// };

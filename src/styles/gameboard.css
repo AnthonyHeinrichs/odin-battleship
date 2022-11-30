@@ -3,11 +3,17 @@
 }
 
 .gameboards {
+  opacity: 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 24px;
   gap: 48px;
+}
+
+.endOpacity {
+  opacity: 0.3;
+  transition: all 1000ms;
 }
 
 .playerOneGameboard, .playerTwoGameboard {
@@ -78,4 +84,8 @@
 
 .missedShip {
   background: rgb(30, 96, 139) !important;
+}
+
+.untargetable {
+  pointer-events: none;
 }

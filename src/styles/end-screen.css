@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600&display=swap');
+
 .endScreen {
   position: absolute;
   display: flex;
@@ -7,9 +9,12 @@
   left: 50%;
   transform: translate(-200%, -50%);
   opacity: 0;
-  height: 600px;
-  width: 100vw;
-  background: white;
+  border-radius: 10px;
+  height: 300px;
+  width: 50vw;
+  background: #ddf2f7;
+  -webkit-box-shadow: 0px 9px 11px 1px rgba(0,0,0,0.62); 
+  box-shadow: 0px 9px 11px 1px rgba(0,0,0,0.62);
   z-index: 9999;
 }
 
@@ -27,6 +32,42 @@
 }
 
 .winnerMessage {
+  font-family: 'Chakra Petch', Arial, Helvetica, sans-serif;
   font-size: 48px;
+  margin-bottom: 24px;
   color: rgb(9, 0, 31);
+}
+
+.endBtn {
+  font-family: 'Chakra Petch', Arial, Helvetica, sans-serif;
+  outline: 0;
+  grid-gap: 8px;
+  align-items: center;
+  background-color: #90d6ff;
+  color: #000;
+  font-weight: bold;
+  border: 1px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-size: 18px;
+  gap: 8px;
+  justify-content: center;
+  line-height: 1.5;
+  overflow: hidden;
+  padding: 4px 16px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  transition: all .14s ease-out;
+  white-space: nowrap;
+}
+
+.endBtn:hover {
+  box-shadow: 2px 2px 0 rgb(25, 24, 92);
+  transform: translate(-2px,-2px);
+}
+
+.endBtn:focus-visible{
+  outline-offset: 1px;
 }

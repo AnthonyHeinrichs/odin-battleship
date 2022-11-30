@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600&display=swap');
+
 .hidden {
   display: none !important;
 }
@@ -7,7 +9,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 24px;
+  margin-top: 48px;
   gap: 48px;
 }
 
@@ -18,33 +20,80 @@
 
 .playerOneGameboard, .playerTwoGameboard {
   display: grid;
-  grid-template-columns: repeat(10, 60px);
-  grid-template-rows: repeat(10, 60px);
-  grid-gap: 0px;
+  grid-template-columns: repeat(10, calc(2.5vw + 24px));
+  grid-template-rows: repeat(10, calc(2.5vw + 24px));
+  grid-gap: 2px;
+  -webkit-box-shadow: 0px 9px 11px 1px rgba(0,0,0,0.62); 
+  box-shadow: 0px 9px 11px 1px rgba(0,0,0,0.62);
 }
 
 .playerSquare, .computerSquare {
   border: solid 0.1px;
   background-color: white;
+  border-radius: 2px;
 }
 
-.playerSquare:hover, .computerSquare:hover {
+.computerSquare:hover {
   background-color: aquamarine;
 }
 
 .shipDockDiv {
-  margin-top: 24px;
+  margin-top: 100px;
+  border-radius: 5px;
+  height: 260px;
+  width: 130px;
+  border: solid rgb(0, 28, 54) 1px;
+  background: white;
+  padding: 12px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
   flex-direction: column-reverse;
-  gap: 24px;
+  gap: 8px;
 }
 
 .shipDock {
   background: transparent;
-  padding: 12px;
-  height: 180px;
+  height: 128px;
+}
+
+.shipDockTitle {
+  font-family: 'Chakra Petch', Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.axisBtn {
+  font-family: 'Chakra Petch', Arial, Helvetica, sans-serif;
+  outline: 0;
+  grid-gap: 8px;
+  align-items: center;
+  background-color: #90d6ff;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-size: 18px;
+  gap: 8px;
+  justify-content: center;
+  line-height: 1.5;
+  overflow: hidden;
+  padding: 4px 16px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  transition: all .14s ease-out;
+  white-space: nowrap;
+}
+
+.axisBtn:hover {
+  box-shadow: 2px 2px 0 rgb(25, 24, 92);
+  transform: translate(-2px,-2px);
+}
+
+.axisBtn:focus-visible{
+  outline-offset: 1px;
 }
 
 .flex {
@@ -58,13 +107,17 @@
   margin-bottom: 6px;
 }
 
+.ship:hover {
+  cursor: grab;
+}
+
 .flexDirectionY {
   flex-direction: column;
 }
 
 .shipSquare {
-  height: 24px;
-  width: 24px;
+  height: 14px;
+  width: 14px;
   background-color: gray;
   border: solid 0.1px white;
 }
@@ -75,17 +128,34 @@
 }
 
 .activeShip {
-  background: rgb(199, 162, 247);
+  background: rgb(167 167 167 / 54%);
 }
 
 .attackedShip {
-  background: rgb(51, 0, 0) !important;
+  background: rgb(255 0 0 / 46%) !important;
 }
 
 .missedShip {
-  background: rgb(30, 96, 139) !important;
+  background: rgb(139 208 255) !important;
 }
 
 .untargetable {
   pointer-events: none;
+}
+
+.gameboardOpac {
+  opacity: 0.1;
+}
+
+.playerOneDiv, .playerTwoDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.playerOneTitle, .playerTwoTitle {
+  font-family: 'Chakra Petch', Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  margin-bottom: 24px;
 }

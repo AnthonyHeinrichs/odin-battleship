@@ -1,6 +1,8 @@
 const initialPageLoad = (playerOneGameboard, playerTwoGameboard) => {
   const mainDiv = document.getElementById("mainDiv");
 
+  mainDiv.classList.add('pictureBackground')
+
   const titleScreen = document.createElement("div");
   titleScreen.classList.add("titleScreen");
   titleScreen.id = "titleScreen";
@@ -28,11 +30,16 @@ const initialPageLoad = (playerOneGameboard, playerTwoGameboard) => {
   gameboards.id = "gameboards";
   mainDiv.appendChild(gameboards);
 
+  const playerOneDiv = document.createElement("div")
+  playerOneDiv.classList.add("playerOneDiv")
+  playerOneDiv.id = "playerOneDiv"
+  gameboards.appendChild(playerOneDiv);
+
   const playerOneGameboardDiv = document.createElement("div");
   playerOneGameboardDiv.classList.add("playerOneGameboard");
   playerOneGameboardDiv.id = "playerOneGameboard";
   playerOneGameboardDiv.classList.add("hidden");
-  gameboards.appendChild(playerOneGameboardDiv);
+  playerOneDiv.appendChild(playerOneGameboardDiv);
 
   // Creating a div for each square in the gameboard (10 x 10)
   for (let i = 0; i < playerOneGameboard.board.length; i++) {
@@ -42,11 +49,16 @@ const initialPageLoad = (playerOneGameboard, playerTwoGameboard) => {
     playerOneGameboardDiv.appendChild(square);
   }
 
+  const playerTwoDiv = document.createElement("div")
+  playerTwoDiv.classList.add("playerTwoDiv")
+  playerTwoDiv.id = "playerTwoDiv"
+  gameboards.appendChild(playerTwoDiv);
+
   const playerTwoGameboardDiv = document.createElement("div");
   playerTwoGameboardDiv.classList.add("playerTwoGameboard");
   playerTwoGameboardDiv.id = "playerTwoGameboard";
   playerTwoGameboardDiv.classList.add("hidden");
-  gameboards.appendChild(playerTwoGameboardDiv);
+  playerTwoDiv.appendChild(playerTwoGameboardDiv);
   // Creating a a div for each square in the gameboard (10 x 10)
   for (let i = 0; i < playerTwoGameboard.board.length; i++) {
     const square = document.createElement("div");

@@ -30,12 +30,32 @@ const setupGame = () => {
 setupGame();
 
 const startGame = () => {
+  const mainDiv = document.getElementById('mainDiv')
+  mainDiv.classList.remove("pictureBackground")
+  mainDiv.classList.add("mainDivFlex")
+
   // Place ships for computer
   placeShips(playerTwoGameboard, false);
   // Place ships for user with callback to know when all ships are placed
   placeShips(playerOneGameboard, true, runGame);
 
   function runGame() {
+    const playerTwoGameboardDiv = document.getElementById("playerTwoGameboard");
+    playerTwoGameboardDiv.classList.remove("hidden");
+
+    const playerOneDiv = document.getElementById("playerOneDiv")
+    const playerTwoDiv = document.getElementById("playerTwoDiv")
+
+    const playerOneTitle = document.createElement('h3')
+    playerOneTitle.classList.add("playerOneTitle")
+    playerOneTitle.innerText = 'Player board'
+    playerOneDiv.prepend(playerOneTitle)
+
+    const playerTwoTitle = document.createElement('h3')
+    playerTwoTitle.classList.add("playerTwoTitle")
+    playerTwoTitle.innerText = 'Computer board'
+    playerTwoDiv.prepend(playerTwoTitle)
+
     const computerSquares = document.querySelectorAll(".computerSquare");
     computerSquares.forEach((square) => {
       square.addEventListener("click", function _listener(event) {
@@ -100,10 +120,8 @@ const startButton = document.getElementById("start");
 startButton.addEventListener("click", () => {
   const titleScreen = document.getElementById("titleScreen");
   const playerOneGameboardDiv = document.getElementById("playerOneGameboard");
-  const playerTwoGameboardDiv = document.getElementById("playerTwoGameboard");
 
   titleScreen.classList.add("hidden");
   playerOneGameboardDiv.classList.remove("hidden");
-  playerTwoGameboardDiv.classList.remove("hidden");
   startGame();
 });

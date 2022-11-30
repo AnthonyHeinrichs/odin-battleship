@@ -20,7 +20,7 @@ const Ship = (length, name) => {
     },
     addedToBoard() {
       this.onBoard = true;
-    }
+    },
   };
 };
 

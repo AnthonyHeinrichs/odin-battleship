@@ -114,8 +114,8 @@ const Gameboard = () => {
         // If it hasn't been attacked, checking if a ship exists on that square
       } else if (attackedSquare.hasShip && !attackedSquare.hasBeenAttacked) {
         attackedSquare.hasBeenAttacked = true;
-        attackedSquare.ship.hitShip()
-        return 'Ship hit'
+        attackedSquare.ship.hitShip();
+        return "Ship hit";
         // If no ship exists on that square, return a miss
       } else {
         attackedSquare.hasBeenAttacked = true;

@@ -18,12 +18,14 @@ const initialPageLoad = (playerOneGameboard, playerTwoGameboard) => {
 
   const startButton = document.createElement("button");
   startButton.id = "start";
+  startButton.classList.add("mainButtons")
   startButton.innerText = "Start Game";
   startBtnDiv.appendChild(startButton);
 
   // Load in the gameboards, one for the user & one for the computer
   const gameboards = document.createElement("div");
   gameboards.classList.add("gameboards");
+  gameboards.id = "gameboards";
   mainDiv.appendChild(gameboards);
 
   const playerOneGameboardDiv = document.createElement("div");
@@ -52,6 +54,12 @@ const initialPageLoad = (playerOneGameboard, playerTwoGameboard) => {
     square.id = playerTwoGameboard.board[i].id;
     playerTwoGameboardDiv.appendChild(square);
   }
+
+  // Creating end screen
+  const endScreen = document.createElement("div");
+  endScreen.classList.add("endScreen");
+  endScreen.id = "endScreen"
+  mainDiv.appendChild(endScreen);
 };
 
 export default initialPageLoad;

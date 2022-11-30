@@ -1,4 +1,4 @@
-#start {
+.mainButtons {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-size: 24px;
   font-weight: bold;
@@ -13,7 +13,7 @@
   overflow: hidden;
 }
 
-#start::before {
+.mainButtons::before {
   position: absolute;
   content: '';
   width: 410px;
@@ -26,7 +26,7 @@
   animation: wave 12s infinite linear;
 }
 
-#start::after {
+.mainButtons::after {
   position: absolute;
   content: '';
   width: 260px;

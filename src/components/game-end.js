@@ -1,19 +1,9 @@
 import '../styles/end-screen.css'
 
 const gameEnd = (winner) => {
-  const mainDiv = document.getElementById("mainDiv");
-  // const gameboards = document.getElementById("gameboards")
+  const gameboards = document.getElementById("gameboards");
 
-  // gameboards.classList.add("endOpacity")
-  // const computerSquares = document.querySelectorAll(".computerSquare");
-  // const playerSquares = document.querySelectorAll(".playerSquare");
-
-  // computerSquares.forEach((square) => {
-  //   square.classList.add('untargetable')
-  // });
-  // playerSquares.forEach((square) => {
-  //   square.classList.add('untargetable')
-  // });
+  gameboards.classList.add('gameboardOpac')
 
   const endScreen = document.getElementById("endScreen")
   endScreen.classList.add('showEnd')
@@ -40,11 +30,9 @@ const gameEnd = (winner) => {
 
   const newGameButton = document.createElement("button")
   newGameButton.id = "playAgain";
-  newGameButton.classList.add("mainButtons")
-  newGameButton.innerText = "Play again?";
+  newGameButton.classList.add("endBtn")
+  newGameButton.innerText = "Play again";
   buttonDiv.appendChild(newGameButton)
-
-  console.log("winner is", winner);
 };
 
 export default gameEnd;

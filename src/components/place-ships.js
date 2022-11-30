@@ -31,6 +31,10 @@ const placeShips = (gameboard, player, gameStart) => {
     shipDock.classList.add("shipDock");
     shipDock.id = "shipDock";
     shipDockDiv.appendChild(shipDock);
+    const shipDockTitle = document.createElement("h3")
+    shipDockTitle.classList.add("shipDockTitle")
+    shipDockTitle.innerText = 'Place your ships'
+    shipDockDiv.appendChild(shipDockTitle)
     // Creating our ship array
     const carrier = Ship(5, "carrier");
     const battleship = Ship(4, "battleship");
@@ -61,7 +65,8 @@ const placeShips = (gameboard, player, gameStart) => {
 
     // Create button to change axis
     const axisBtn = document.createElement("button");
-    axisBtn.innerText = `Change Axis to ${axis == "x" ? "Y" : "X"}`;
+    axisBtn.classList.add('axisBtn')
+    axisBtn.innerText = 'Rotate';
     shipDockDiv.prepend(axisBtn);
     const draggableItems = document.querySelectorAll(".draggable");
     // Add event listener to axis button to change axis and button text
@@ -79,7 +84,7 @@ const placeShips = (gameboard, player, gameStart) => {
           ship.classList.remove("flexDirectionY");
         });
       }
-      axisBtn.innerText = `Change Axis to ${axis == "x" ? "Y" : "X"}`;
+      axisBtn.innerText = 'Rotate';
     });
 
     // Add event listener for draggable elements

@@ -1,7 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
 body {
+  margin: 0; 
+  background: rgb(233, 233, 255);
+}
+
+h2, h3 {
   margin: 0;
+} 
+
+.pictureBackground {
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+  z-index:1000;
   background: url('./public/battlefield.jpg') no-repeat center center fixed;
   background-size: cover;
   -webkit-background-size: cover;
@@ -9,8 +23,12 @@ body {
   -o-background-size: cover;
 }
 
-h2 {
-  margin: 0;
+.mainDivFlex {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px;
 }
 
 .center {

@@ -6,6 +6,7 @@ test('Player returns an object with correct information', () => {
     isTurn: false,
     playerId: 1,
     ai: false,
+    aiAttack: expect.any(Function),
     setTurn: expect.any(Function)
   })
 })

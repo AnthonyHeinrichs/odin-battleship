@@ -1,14 +1,22 @@
 const Ship = require("../modules/ship");
 
-const placeShips = (gameboard, player, gameStart) => {
-  const mainDiv = document.getElementById("mainDiv");
+const placeShips = (
+  gameboard,
+  player,
+  playerOneShips,
+  playerTwoShips,
+  gameStart
+) => {
+  const shipDockDiv = document.getElementById("shipDockDiv");
+  shipDockDiv.classList.remove("hidden");
+  const playerTwoDiv = document.getElementById("playerTwoDiv");
 
   if (player) {
     let axis = "x";
     let shipLength = 0;
     let squareId = 0;
     let currentShip = null;
-    let addedShips = 0
+    let addedShips = 0;
 
     // Adding classes to each ship square to show them on the board
     const showShipsOnBoard = () => {
@@ -23,28 +31,11 @@ const placeShips = (gameboard, player, gameStart) => {
         }
     };
 
-    // Creating the dock for our ships so they can be drag & dropped
-    const shipDockDiv = document.createElement("div");
-    shipDockDiv.classList.add("shipDockDiv");
-    mainDiv.prepend(shipDockDiv);
-    const shipDock = document.createElement("div");
-    shipDock.classList.add("shipDock");
-    shipDock.id = "shipDock";
-    shipDockDiv.appendChild(shipDock);
-    const shipDockTitle = document.createElement("h3")
-    shipDockTitle.classList.add("shipDockTitle")
-    shipDockTitle.innerText = 'Place your ships'
-    shipDockDiv.appendChild(shipDockTitle)
     // Creating our ship array
-    const carrier = Ship(5, "carrier");
-    const battleship = Ship(4, "battleship");
-    const submarine = Ship(3, "submarine");
-    const cruiser = Ship(3, "cruiser");
-    const destroyer = Ship(2, "destroyer");
-    let ships = [carrier, battleship, submarine, cruiser, destroyer];
-  
+
+    const shipDock = document.getElementById("shipDock");
     // Itterating over each ship and making them drag & droppable
-    ships.forEach((ship) => {
+    playerOneShips.forEach((ship) => {
       const newShip = document.createElement("div");
       newShip.classList.add("ship");
 
@@ -64,10 +55,8 @@ const placeShips = (gameboard, player, gameStart) => {
     });
 
     // Create button to change axis
-    const axisBtn = document.createElement("button");
-    axisBtn.classList.add('axisBtn')
-    axisBtn.innerText = 'Rotate';
-    shipDockDiv.prepend(axisBtn);
+    const axisBtn = document.getElementById("axisBtn");
+
     const draggableItems = document.querySelectorAll(".draggable");
     // Add event listener to axis button to change axis and button text
     axisBtn.addEventListener("click", () => {
@@ -84,7 +73,7 @@ const placeShips = (gameboard, player, gameStart) => {
           ship.classList.remove("flexDirectionY");
         });
       }
-      axisBtn.innerText = 'Rotate';
+      axisBtn.innerText = "Rotate";
     });
 
     // Add event listener for draggable elements
@@ -95,18 +84,21 @@ const placeShips = (gameboard, player, gameStart) => {
       });
       // On drag end, add the ship to the gameboard
       draggable.addEventListener("dragend", (event) => {
-        const ship = ships.find(ship => (ship.name == event.target.id))
+        const ship = playerOneShips.find(
+          (ship) => ship.name == event.target.id
+        );
 
         if (shipLength != 0 || squareId != 0) {
           if (gameboard.addShip(squareId, axis, ship.length, ship) == "Valid") {
             event.target.parentElement.remove();
             gameboard.addShip(squareId, axis, ship.length, ship);
             showShipsOnBoard();
-            addedShips++
+            addedShips++;
             if (addedShips == 5) {
               shipDockDiv.classList.add("hidden");
+              playerTwoDiv.classList.remove("hidden");
               gameStart();
-            } 
+            }
           } else {
             console.log("Invalid placement for ship");
           }
@@ -134,27 +126,20 @@ const placeShips = (gameboard, player, gameStart) => {
       });
     });
   } else {
-    // Creating our ship array for computer ships
-    const carrier = Ship(5, "carrier");
-    const battleship = Ship(4, "battleship");
-    const submarine = Ship(3, "submarine");
-    const cruiser = Ship(3, "cruiser");
-    const destroyer = Ship(2, "destroyer");
-    let ships = [carrier, battleship, submarine, cruiser, destroyer];
     // Placing our computer ships on the board
-    while (ships.length > 0) {
-      ships.forEach((ship) => {
+    while (playerTwoShips.length > 0) {
+      playerTwoShips.forEach((ship) => {
         let squareId = parseInt(Math.random() * 99 + 1);
         let randomAxisNum = parseInt(Math.random() * 101);
         let axis = randomAxisNum > 50 ? "x" : "y";
-        let valid = false
-   
+        let valid = false;
+
         // If the randomly generated square ID and axis combo is valid, place ship
         if (gameboard.addShip(squareId, axis, ship.length, ship) == "Invalid") {
           return;
         } else {
           gameboard.addShip(squareId, axis, ship.length, ship);
-          ships = ships.filter((a) => a !== ship);
+          playerTwoShips = playerTwoShips.filter((a) => a !== ship);
           valid = true;
         }
       });

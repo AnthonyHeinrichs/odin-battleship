@@ -18,6 +18,7 @@ const gameEnd = (winner, startGame, runAttack) => {
     const playerTwoDiv = document.getElementById("playerTwoDiv");
     const playerOneTitle = document.getElementById("playerOneTitle");
     const playerTwoTitle = document.getElementById("playerTwoTitle");
+    const shipDock = document.getElementById("shipDock")
 
     computerSquares.forEach((square) => {
       square.classList.remove("attackedShip");
@@ -35,6 +36,7 @@ const gameEnd = (winner, startGame, runAttack) => {
     playerTwoTitle.classList.add("hidden");
     gameboards.classList.remove("gameboardOpac");
     endScreen.classList.remove("showEnd");
+    shipDock.classList.remove("flex");
 
     computerSquares.forEach((square) => {
       square.removeEventListener("click", runAttack, false);

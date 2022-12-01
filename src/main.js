@@ -120,6 +120,7 @@ const startGame = () => {
     }
 
     if (computerShips.every((ship) => ship == true)) {
+      console.log('player winner')
       winner = "Player";
       gameEnd(winner, startGame, runAttack);
       playerOneGameboard = null;
@@ -129,6 +130,7 @@ const startGame = () => {
       playerOneShips = [];
       playerTwoShips = [];
       setupGame();
+      return;
     }
 
     for (let i = 0; i < playerOneGameboard.board.length; i++) {
@@ -138,14 +140,17 @@ const startGame = () => {
     }
 
     if (playerShips.every((ship) => ship == true)) {
+      console.log('computer winner')
       winner = "Computer";
-
       gameEnd(winner, startGame, runAttack);
       playerOneGameboard = null;
       playerTwoGameboard = null;
+      playerOne = null;
+      playerTwo = null;
       playerOneShips = [];
-      playerTwoShips = [];
+      playerTwoShips = []
       setupGame();
+      return;
     }
   };
 };

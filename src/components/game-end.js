@@ -1,38 +1,50 @@
-import '../styles/end-screen.css'
+import "../styles/end-screen.css";
 
-const gameEnd = (winner) => {
+const gameEnd = (winner, startGame, runAttack) => {
   const gameboards = document.getElementById("gameboards");
+  const endScreen = document.getElementById("endScreen");
+  const winnerMessage = document.getElementById("winnerMessage");
+  const newGameButton = document.getElementById("playAgain");
 
-  gameboards.classList.add('gameboardOpac')
+  endScreen.classList.add("showEnd");
+  gameboards.classList.add("gameboardOpac");
 
-  const endScreen = document.getElementById("endScreen")
-  endScreen.classList.add('showEnd')
-  
-  const winnerMessage = document.createElement("h2")
-  winnerMessage.classList.add("winnerMessage")
+  const message = winner == "Player" ? "You won!" : "Computer won";
+  winnerMessage.innerText = `${message}`;
 
-  const endChildDiv = document.createElement("div")
-  endChildDiv.classList.add("endChildDiv")
-  endScreen.appendChild(endChildDiv)
+  const playAgain = () => {
+    const computerSquares = document.querySelectorAll(".computerSquare");
+    const playerSquares = document.querySelectorAll(".playerSquare");
+    const playerTwoDiv = document.getElementById("playerTwoDiv");
+    const playerOneTitle = document.getElementById("playerOneTitle");
+    const playerTwoTitle = document.getElementById("playerTwoTitle");
 
-  const messageDiv = document.createElement("div")
-  messageDiv.classList.add("messagediv")
-  endChildDiv.appendChild(messageDiv)
+    computerSquares.forEach((square) => {
+      square.classList.remove("attackedShip");
+      square.classList.remove("missedShip");
+    });
 
-  const message = (winner == 'Player' ? "You won!" : "Computer won")
-  winnerMessage.classList.add("winnerMessage")
-  winnerMessage.innerText = `${message}`
-  messageDiv.appendChild(winnerMessage)
+    playerSquares.forEach((square) => {
+      square.classList.remove("attackedShip");
+      square.classList.remove("missedShip");
+      square.classList.remove("activeShip");
+    });
 
-  const buttonDiv = document.createElement("div")
-  buttonDiv.classList.add("buttondiv")
-  endChildDiv.appendChild(buttonDiv)
+    playerTwoDiv.classList.add("hidden");
+    playerOneTitle.classList.add("hidden");
+    playerTwoTitle.classList.add("hidden");
+    gameboards.classList.remove("gameboardOpac");
+    endScreen.classList.remove("showEnd");
 
-  const newGameButton = document.createElement("button")
-  newGameButton.id = "playAgain";
-  newGameButton.classList.add("endBtn")
-  newGameButton.innerText = "Play again";
-  buttonDiv.appendChild(newGameButton)
+    computerSquares.forEach((square) => {
+      square.removeEventListener("click", runAttack, false);
+    });
+
+    startGame();
+    newGameButton.removeEventListener("click", playAgain, false);
+  };
+
+  newGameButton.addEventListener("click", playAgain);
 };
 
 export default gameEnd;

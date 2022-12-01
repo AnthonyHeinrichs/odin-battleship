@@ -19,12 +19,11 @@ const Player = (id, ifAi) => {
     setTurn() {
       this.isTurn = !this.isTurn;
     },
-    aiAttack(gameboard, playerOne, playerTwo, showAttacks, checkWinner) {
+    aiAttack(gameboard, playerOne, playerTwo, showAttacks) {
       if (aiHit == false) {
         let ranNum = Math.floor(Math.random() * nums.length);
         if (gameboard.receiveAttack(nums[ranNum]) == "Ship hit") {
           aiHit = true;
-          checkWinner();
         }
         lastHitNum = nums[ranNum];
         firstHitNum = nums[ranNum];
@@ -41,7 +40,6 @@ const Player = (id, ifAi) => {
               nums = nums.filter((num) => num !== lastHitNum);
               hitLeft = true;
               showAttacks(playerTwo, gameboard);
-              checkWinner();
             } else {
               lastHitNum = lastHitNum - 1;
               nums = nums.filter((num) => num !== lastHitNum - 1);
@@ -50,13 +48,7 @@ const Player = (id, ifAi) => {
             }
           } else {
             hitLeft = false;
-            this.aiAttack(
-              gameboard,
-              playerOne,
-              playerTwo,
-              showAttacks,
-              checkWinner
-            );
+            this.aiAttack(gameboard, playerOne, playerTwo, showAttacks);
           }
         } else if (hitRight == true) {
           if (
@@ -68,7 +60,6 @@ const Player = (id, ifAi) => {
               nums = nums.filter((num) => num !== lastHitNum);
               hitRight = true;
               showAttacks(playerTwo, gameboard);
-              checkWinner();
             } else {
               lastHitNum = lastHitNum + 1;
               nums = nums.filter((num) => num !== lastHitNum);
@@ -77,13 +68,7 @@ const Player = (id, ifAi) => {
             }
           } else {
             hitRight = false;
-            this.aiAttack(
-              gameboard,
-              playerOne,
-              playerTwo,
-              showAttacks,
-              checkWinner
-            );
+            this.aiAttack(gameboard, playerOne, playerTwo, showAttacks);
           }
         } else if (hitTop == true) {
           if (
@@ -95,7 +80,6 @@ const Player = (id, ifAi) => {
               nums = nums.filter((num) => num !== lastHitNum);
               hitTop = true;
               showAttacks(playerTwo, gameboard);
-              checkWinner();
             } else {
               lastHitNum = lastHitNum - 10;
               nums = nums.filter((num) => num !== lastHitNum);
@@ -104,13 +88,7 @@ const Player = (id, ifAi) => {
             }
           } else {
             hitTop = false;
-            this.aiAttack(
-              gameboard,
-              playerOne,
-              playerTwo,
-              showAttacks,
-              checkWinner
-            );
+            this.aiAttack(gameboard, playerOne, playerTwo, showAttacks);
           }
         } else if (hitBot == true) {
           if (
@@ -122,7 +100,6 @@ const Player = (id, ifAi) => {
               nums = nums.filter((num) => num !== lastHitNum);
               hitBot = true;
               showAttacks(playerTwo, gameboard);
-              checkWinner();
             } else {
               lastHitNum = lastHitNum + 10;
               nums = nums.filter((num) => num !== lastHitNum);
@@ -131,13 +108,7 @@ const Player = (id, ifAi) => {
             }
           } else {
             hitBot = false;
-            this.aiAttack(
-              gameboard,
-              playerOne,
-              playerTwo,
-              showAttacks,
-              checkWinner
-            );
+            this.aiAttack(gameboard, playerOne, playerTwo, showAttacks);
           }
         } else {
           if (
@@ -149,7 +120,6 @@ const Player = (id, ifAi) => {
               nums = nums.filter((num) => num !== lastHitNum);
               hitLeft = true;
               showAttacks(playerTwo, gameboard);
-              checkWinner();
             } else {
               gameboard.receiveAttack(firstHitNum - 1);
               lastHitNum = firstHitNum - 1;
@@ -166,7 +136,6 @@ const Player = (id, ifAi) => {
               nums = nums.filter((num) => num !== lastHitNum);
               hitRight = true;
               showAttacks(playerTwo, gameboard);
-              checkWinner();
             } else {
               gameboard.receiveAttack(firstHitNum + 1);
               lastHitNum = firstHitNum + 1;
@@ -183,7 +152,6 @@ const Player = (id, ifAi) => {
               nums = nums.filter((num) => num !== lastHitNum);
               hitBot = true;
               showAttacks(playerTwo, gameboard);
-              checkWinner();
             } else {
               gameboard.receiveAttack(firstHitNum + 10);
               lastHitNum = firstHitNum + 10;
@@ -200,7 +168,6 @@ const Player = (id, ifAi) => {
               nums = nums.filter((num) => num !== lastHitNum);
               hitTop = true;
               showAttacks(playerTwo, gameboard);
-              checkWinner();
             } else {
               gameboard.receiveAttack(firstHitNum - 10);
               lastHitNum = firstHitNum - 10;
@@ -212,7 +179,6 @@ const Player = (id, ifAi) => {
             let ranNum = Math.floor(Math.random() * nums.length);
             if (gameboard.receiveAttack(nums[ranNum]) == "Ship hit") {
               aiHit = true;
-              checkWinner();
             }
             firstHitNum = nums[ranNum];
             lastHitNum = nums[ranNum];

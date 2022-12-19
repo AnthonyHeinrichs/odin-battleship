@@ -130,6 +130,15 @@ const initialPageLoad = (playerOneGameboard, playerTwoGameboard) => {
   newGameButton.classList.add("endBtn");
   newGameButton.innerText = "Play again";
   buttonDiv.appendChild(newGameButton);
+
+  const footer = document.createElement("footer")
+  footer.classList.add("footer")
+  mainDiv.appendChild(footer)
+
+  const copy = document.createElement("p")
+  copy.classList.add("copy")
+  copy.innerText = `© ${new Date().getFullYear()} Anthony Heinrichs.`
+  footer.appendChild(copy)
 };
 
 export default initialPageLoad;
